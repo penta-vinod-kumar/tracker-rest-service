@@ -1,0 +1,77 @@
+{"properties": [
+  {
+    "name": "sql.insert.user.details",
+    "type": "java.lang.String",
+    "description": "A description for 'sql.insert.user.details'"
+  },
+  {
+    "name": "sql.select.user.details",
+    "type": "java.lang.String",
+    "description": "A description for 'sql.select.user.details'"
+  },
+  {
+    "name": "db.url",
+    "type": "java.lang.String",
+    "description": "A description for 'db.url'"
+  },
+  {
+    "name": "db.username",
+    "type": "java.lang.String",
+    "description": "A description for 'db.username'"
+  },
+  {
+    "name": "db.password",
+    "type": "java.lang.String",
+    "description": "A description for 'db.password'"
+  },
+  {
+    "name": "db.driverclassname",
+    "type": "java.lang.String",
+    "description": "A description for 'db.driverclassname'"
+  },
+  {
+    "name": "sql.select.user.loggedin",
+    "type": "java.lang.String",
+    "description": "A description for 'sql.select.user.loggedin'"
+  },
+  {
+    "name": "sql.update.user.login",
+    "type": "java.lang.String",
+    "description": "A description for 'sql.update.user.login'"
+  },
+  {
+    "name": "sql.insert.user.login",
+    "type": "java.lang.String",
+    "description": "A description for 'sql.insert.user.login'"
+  },
+  {
+    "name": "sql.insert.friend.id",
+    "type": "java.lang.String",
+    "description": "A description for 'sql.insert.friend.id'"
+  },
+  {
+    "name": "sql.select.friend.id",
+    "type": "java.lang.String",
+    "description": "A description for 'sql.select.friend.id'"
+  },
+  {
+    "name": "sql.select.friends.id",
+    "type": "java.lang.String",
+    "description": "A description for 'sql.select.friends.id'"
+  },
+  {
+    "name": "sql.select.friends.details.id",
+    "type": "java.lang.String",
+    "description": "A description for 'sql.select.friends.details.id'"
+  },
+  {
+    "name": "sql.insert.location.by.id",
+    "type": "java.lang.String",
+    "description": "A description for 'sql.insert.location.by.id'"
+  },
+  {
+    "name": "sql.select.location.by.id",
+    "type": "java.lang.String",
+    "description": "A description for 'sql.select.location.by.id'"
+  }
+]}
