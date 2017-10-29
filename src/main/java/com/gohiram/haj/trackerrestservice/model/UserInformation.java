@@ -19,7 +19,7 @@ import javax.persistence.Table;
 public class UserInformation {
 
     @Id
-    private String id;
+    private Long id;
 
     @ApiModelProperty
     private String firstName;
