@@ -18,9 +18,6 @@ import javax.persistence.Table;
 @Setter
 public class UserInformation {
 
-    @Id
-    private Long id;
-
     @ApiModelProperty
     private String firstName;
 
@@ -30,6 +27,7 @@ public class UserInformation {
     @ApiModelProperty
     private String emailId;
 
+    @Id
     @ApiModelProperty
     private long mobileNumber;
 
