@@ -20,7 +20,7 @@ import io.swagger.annotations.ApiOperation;
 
 
 @Api(value="LoginService")
-@CrossOrigin
+//@CrossOrigin
 @RestController
 @RequestMapping("/user")
 public class LoginController {

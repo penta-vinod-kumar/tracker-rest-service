@@ -22,7 +22,7 @@ import io.swagger.annotations.ApiOperation;
 
 
 @Api(value="UserRegistrationService")
-@CrossOrigin
+//@CrossOrigin
 @RestController
 
 @RequestMapping("/user-details")
