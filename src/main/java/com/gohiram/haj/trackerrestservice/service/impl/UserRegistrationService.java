@@ -37,4 +37,7 @@ public class UserRegistrationService {
     }
 
 
+    public Users readUserInformationByEmail(String emailId) {
+        return userRepository.findByEmailId(emailId);
+    }
 }
