@@ -5,6 +5,7 @@ import com.gohiram.haj.trackerrestservice.service.impl.UserRegistrationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,7 +22,9 @@ import io.swagger.annotations.ApiOperation;
 
 
 @Api(value="UserRegistrationService")
+@CrossOrigin
 @RestController
+
 @RequestMapping("/user-details")
 public class UserController {
 
@@ -35,8 +38,8 @@ public class UserController {
 		response.setData(userRegistrationService.registerUser(request.getData()));
 		return new ResponseEntity<>(response,HttpStatus.OK);
 	}
-	
-	
+
+
 	@ApiOperation(consumes = "application/json", value = "/read/{id}", httpMethod = "GET", produces = "application/json", response = TrackerResponse.class)
 	@RequestMapping(path="read/{id}",method=RequestMethod.GET)
 	public ResponseEntity<TrackerResponse<Users>> readUser(@PathVariable long id) throws TrackerException
@@ -45,7 +48,7 @@ public class UserController {
 		response.setData(userRegistrationService.readUserInformation(id));
 		return new ResponseEntity<>(response,HttpStatus.OK);
 	}
-	
+
 	@RequestMapping(path="is-user-exists/{id}",method=RequestMethod.GET)
 	public ResponseEntity<TrackerResponse<Boolean>> isUserExists(@PathVariable Long id) throws TrackerException
 	{
