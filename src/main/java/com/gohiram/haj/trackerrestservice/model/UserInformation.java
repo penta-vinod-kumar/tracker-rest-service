@@ -10,8 +10,6 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Entity(name = "Users")
-@Table(name = "Users")
 @ApiModel
 @NoArgsConstructor
 @Getter

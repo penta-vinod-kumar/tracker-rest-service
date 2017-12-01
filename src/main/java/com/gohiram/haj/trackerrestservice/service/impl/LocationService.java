@@ -1,39 +1,42 @@
 package com.gohiram.haj.trackerrestservice.service.impl;
 
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.stereotype.Service;
-
 import com.gohiram.haj.trackerrestservice.dao.ILocationDao;
 import com.gohiram.haj.trackerrestservice.dao.LocationRepository;
 import com.gohiram.haj.trackerrestservice.exception.TrackerException;
-import com.gohiram.haj.trackerrestservice.service.ILocationService;
+import com.gohiram.haj.trackerrestservice.model.Location;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.Date;
 
 @Service
-public class LocationService implements ILocationService {
+public class LocationService {
 
-	@Autowired
-	private ILocationDao locationDao;
-	
-	@Autowired
-	private LocationRepository locationRepository;
-	
-	private static PageRequest page=PageRequest.of(0,5);
-	
-	@Override
-	public boolean addLocation(String id, String location) throws TrackerException {
-		
-		return locationDao.addLocation(id, location);
-	}
+    @Autowired
+    private ILocationDao locationDao;
 
-	
-	public List<String> getRecentLocations(String id) throws TrackerException {
-		
-		return locationRepository.findAll(id,page);
-	}
+    @Autowired
+    private LocationRepository locationRepository;
+
+    public Boolean addLocation(Long id, String location) throws TrackerException {
+        Location loc = locationRepository.findById(id).orElse(new Location());
+        loc.setLastUpdated(new Date());
+        loc.setLocation(location);
+        loc.setId(id);
+        try {
+            locationRepository.save(loc);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
 
 
-	
+    public String getRecentLocations(String id) throws TrackerException {
+        Location location = locationRepository.findById(Long.valueOf(id)).orElse(new Location());
+        return location.getLocation();
+    }
+
+
 }

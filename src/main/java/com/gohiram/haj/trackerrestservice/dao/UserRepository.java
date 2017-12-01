@@ -1,12 +1,11 @@
 package com.gohiram.haj.trackerrestservice.dao;
 
+import com.gohiram.haj.trackerrestservice.model.Users;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.gohiram.haj.trackerrestservice.model.UserInformation;
-
 @Repository
-public interface UserRepository extends JpaRepository<UserInformation,Long>{
+public interface UserRepository extends JpaRepository<Users, Long> {
 
-	
+
 }

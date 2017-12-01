@@ -1,5 +1,7 @@
 package com.gohiram.haj.trackerrestservice.controller;
 
+import com.gohiram.haj.trackerrestservice.model.Users;
+import com.gohiram.haj.trackerrestservice.service.impl.UserRegistrationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +15,6 @@ import com.gohiram.haj.trackerrestservice.exception.TrackerException;
 import com.gohiram.haj.trackerrestservice.model.TrackerRequest;
 import com.gohiram.haj.trackerrestservice.model.TrackerResponse;
 import com.gohiram.haj.trackerrestservice.model.UserInformation;
-import com.gohiram.haj.trackerrestservice.service.IUserRegistrationService;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -25,12 +26,12 @@ import io.swagger.annotations.ApiOperation;
 public class UserController {
 
 	@Autowired
-	private IUserRegistrationService userRegistrationService;
+	private UserRegistrationService userRegistrationService;
 
 	@ApiOperation(consumes = "application/json", value = "/register", httpMethod = "POST", produces = "application/json", response = TrackerResponse.class)
 	@RequestMapping(path = "register", method = RequestMethod.POST)
-	public ResponseEntity<TrackerResponse<Boolean>> registerUser(@RequestBody() TrackerRequest<UserInformation> request) throws  TrackerException {
-		TrackerResponse<Boolean> response = new TrackerResponse<>();
+	public ResponseEntity<TrackerResponse<Users>> registerUser(@RequestBody() TrackerRequest<UserInformation> request) throws  TrackerException {
+		TrackerResponse<Users> response = new TrackerResponse<>();
 		response.setData(userRegistrationService.registerUser(request.getData()));
 		return new ResponseEntity<>(response,HttpStatus.OK);
 	}
@@ -38,9 +39,9 @@ public class UserController {
 	
 	@ApiOperation(consumes = "application/json", value = "/read/{id}", httpMethod = "GET", produces = "application/json", response = TrackerResponse.class)
 	@RequestMapping(path="read/{id}",method=RequestMethod.GET)
-	public ResponseEntity<TrackerResponse<UserInformation>> readUser(@PathVariable long id) throws TrackerException
+	public ResponseEntity<TrackerResponse<Users>> readUser(@PathVariable long id) throws TrackerException
 	{
-		TrackerResponse<UserInformation> response=new TrackerResponse<>(); 
+		TrackerResponse<Users> response=new TrackerResponse<>();
 		response.setData(userRegistrationService.readUserInformation(id));
 		return new ResponseEntity<>(response,HttpStatus.OK);
 	}

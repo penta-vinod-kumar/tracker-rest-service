@@ -1,37 +1,40 @@
 package com.gohiram.haj.trackerrestservice.service.impl;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.gohiram.haj.trackerrestservice.dao.UserRepository;
 import com.gohiram.haj.trackerrestservice.exception.TrackerException;
 import com.gohiram.haj.trackerrestservice.model.UserInformation;
-import com.gohiram.haj.trackerrestservice.service.IUserRegistrationService;
+import com.gohiram.haj.trackerrestservice.model.Users;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 
 @Service
-public class UserRegistrationService implements IUserRegistrationService {
+public class UserRegistrationService {
 
-	/*@Autowired
-	private IUserRegistrationDao userRegistrationDao;*/
+    @Autowired
+    private UserRepository userRepository;
 
-	@Autowired
-	private UserRepository userRepository;
-	
-	@Override
-	public boolean registerUser(UserInformation userInformation) throws TrackerException {
-		return userRepository.save(userInformation)!=null;
-	}
+    public Users registerUser(UserInformation userInformation) throws TrackerException {
+        Users users = createUser(userInformation);
+        return userRepository.save(users);
+    }
 
-	@Override
-	public boolean isUserRegistered(Long id) throws TrackerException {
-		return userRepository.existsById(id);
-	}
+    private Users createUser(UserInformation userInformation) {
+        Users users = new Users();
+        users.setEmailId(userInformation.getEmailId());
+        users.setFirstName(userInformation.getFirstName());
+        users.setLastName(userInformation.getLastName());
+        users.setMobileNumber(userInformation.getMobileNumber());
+        return users;
+    }
 
-	@Override
-	public UserInformation readUserInformation(long id) throws TrackerException {
-		return userRepository.findById(id).orElse(null);
-	}
+    public boolean isUserRegistered(Long id) throws TrackerException {
+        return userRepository.existsById(id);
+    }
 
-	
+    public Users readUserInformation(long id) throws TrackerException {
+        return userRepository.findById(id).orElse(new Users());
+    }
+
+
 }

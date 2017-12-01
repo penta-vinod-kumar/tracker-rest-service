@@ -1,30 +1,22 @@
 package com.gohiram.haj.trackerrestservice.model;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.Data;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="Devices")
-@Getter
-@Setter
-@NoArgsConstructor
+@Table(name = "DEVICES")
+@Data
 public class Device {
 
     @Id
-    String id;
+    @Column(name = "ID")
+    private Long id;
 
-    long userId;
-
-
-    public Device(String id, long userId)
-    {
-        this.id=id;
-        this.userId=userId;
-    }
+    @Column(name = "USER_ID")
+    private long userId;
 
 }
