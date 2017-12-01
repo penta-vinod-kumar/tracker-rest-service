@@ -1,6 +1,5 @@
 package com.gohiram.haj.trackerrestservice.service.impl;
 
-import com.gohiram.haj.trackerrestservice.dao.ILocationDao;
 import com.gohiram.haj.trackerrestservice.dao.LocationRepository;
 import com.gohiram.haj.trackerrestservice.exception.TrackerException;
 import com.gohiram.haj.trackerrestservice.model.Location;
@@ -11,9 +10,6 @@ import java.util.Date;
 
 @Service
 public class LocationService {
-
-    @Autowired
-    private ILocationDao locationDao;
 
     @Autowired
     private LocationRepository locationRepository;
