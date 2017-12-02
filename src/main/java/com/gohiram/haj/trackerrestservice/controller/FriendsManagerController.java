@@ -28,8 +28,8 @@ public class FriendsManagerController {
 
     @ApiOperation(value = "Change status of friends request")
     @RequestMapping(path = "/accept/{id}/{friendId}/{status}", method = RequestMethod.POST, produces = {"application/json"})
-    public ResponseEntity<TrackerResponse<Boolean>> acceptFriendRequest(@PathVariable long id, @PathVariable long friendId, @ApiParam(name = "status") @PathVariable String status) throws TrackerException {
-        return new ResponseEntity<>(new TrackerResponse<Boolean>().setData(friendsManagerService.acceptFriendRequest(id, friendId, status)), HttpStatus.ACCEPTED);
+    public ResponseEntity<TrackerResponse<Boolean>> acceptFriendRequest(@PathVariable long id, @PathVariable long friendId) throws TrackerException {
+        return new ResponseEntity<>(new TrackerResponse<Boolean>().setData(friendsManagerService.acceptFriendRequest(id, friendId)), HttpStatus.ACCEPTED);
     }
 
     @RequestMapping(path = "/send-friend-request/{id}/{friendMobileNumber}", method = RequestMethod.POST, produces = {"application/json"})

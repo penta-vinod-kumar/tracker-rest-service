@@ -30,14 +30,18 @@ public class FriendsManagerService {
     private static final String STATUS_WAITING = "WAITING";
     private static final String STATUS_CONFIRMED = "CONFIRMED";
 
-    public boolean acceptFriendRequest(long id, long friendId, String status) throws TrackerException {
+    public boolean acceptFriendRequest(long id, long friendId) throws TrackerException {
         try {
             Friend me = friendsRepository.findByMyIdAndFriendId(id, friendId);
             Friend friend = friendsRepository.findByMyIdAndFriendId(friendId, id);
-            me.setStatus(STATUS_CONFIRMED);
-            friendsRepository.save(me);
-            friend.setStatus(STATUS_CONFIRMED);
-            friendsRepository.save(friend);
+            if (STATUS_PENDING.equals(me.getStatus())) {
+                me.setStatus(STATUS_CONFIRMED);
+                friendsRepository.save(me);
+                friend.setStatus(STATUS_CONFIRMED);
+                friendsRepository.save(friend);
+            } else {
+                throw new TrackerException("Not Possible to Accept ", HttpStatus.NO_CONTENT);
+            }
         } catch (Exception e) {
             e.printStackTrace();
             return false;
