@@ -46,7 +46,7 @@ public class UserController {
     }
 
     //@ApiOperation(consumes = "application/json", value = "/read/{id}", httpMethod = "GET", produces = "application/json", response = TrackerResponse.class)
-    @RequestMapping(path = "read-by-email/{emailId}", method = RequestMethod.GET)
+    @RequestMapping(path = "read-by-email/{emailId}/", method = RequestMethod.GET)
     public ResponseEntity<TrackerResponse<Users>> readUserByEmail(@PathVariable String emailId) throws TrackerException {
         TrackerResponse<Users> response = new TrackerResponse<>();
         response.setData(userRegistrationService.readUserInformationByEmail(emailId));
