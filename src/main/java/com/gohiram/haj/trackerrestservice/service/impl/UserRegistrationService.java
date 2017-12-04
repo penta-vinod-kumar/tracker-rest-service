@@ -1,11 +1,15 @@
 package com.gohiram.haj.trackerrestservice.service.impl;
 
+import com.gohiram.haj.trackerrestservice.dao.FriendsRepository;
 import com.gohiram.haj.trackerrestservice.dao.UserRepository;
-import com.gohiram.haj.trackerrestservice.exception.TrackerException;
 import com.gohiram.haj.trackerrestservice.dao.model.UserInformation;
 import com.gohiram.haj.trackerrestservice.dao.model.Users;
+import com.gohiram.haj.trackerrestservice.exception.TrackerException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 
 @Service
@@ -13,6 +17,9 @@ public class UserRegistrationService {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private FriendsRepository friendsRepository;
 
     public Users registerUser(UserInformation userInformation) throws TrackerException {
         Users users = createUser(userInformation);
@@ -39,5 +46,9 @@ public class UserRegistrationService {
 
     public Users readUserInformationByEmail(String emailId) {
         return userRepository.findByEmailId(emailId);
+    }
+
+    public List<Users> readAllFriendsUserInformation(Long id) {
+        return friendsRepository.findAllByMyId(id).stream().map(friend -> userRepository.findById(friend.getFriendId()).get()).collect(Collectors.toList());
     }
 }

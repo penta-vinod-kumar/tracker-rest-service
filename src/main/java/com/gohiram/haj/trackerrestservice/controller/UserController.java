@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 
 @Api(value = "UserRegistrationService")
 //@CrossOrigin
@@ -57,5 +59,10 @@ public class UserController {
     @RequestMapping(path = "is-user-exists/{id}", method = RequestMethod.GET)
     public ResponseEntity<TrackerResponse<Boolean>> isUserExists(@PathVariable Long id) throws TrackerException {
         return new ResponseEntity<>(new TrackerResponse<Boolean>().setData(userRegistrationService.isUserRegistered(id)), HttpStatus.OK);
+    }
+
+    @RequestMapping(path = "read-all-friends/{id}", method = RequestMethod.GET)
+    public ResponseEntity<TrackerResponse<List<Users>>> readAllFriends(@PathVariable Long id) throws TrackerException {
+        return new ResponseEntity<>(new TrackerResponse<List<Users>>().setData(userRegistrationService.readAllFriendsUserInformation(id)), HttpStatus.OK);
     }
 }
