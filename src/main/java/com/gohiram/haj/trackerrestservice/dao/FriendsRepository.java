@@ -1,6 +1,6 @@
 package com.gohiram.haj.trackerrestservice.dao;
 
-import com.gohiram.haj.trackerrestservice.model.Friend;
+import com.gohiram.haj.trackerrestservice.dao.model.Friend;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

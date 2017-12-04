@@ -1,12 +1,15 @@
 package com.gohiram.haj.trackerrestservice.service.impl;
 
+import com.gohiram.haj.trackerrestservice.dao.FriendsRepository;
 import com.gohiram.haj.trackerrestservice.dao.LocationRepository;
+import com.gohiram.haj.trackerrestservice.dao.model.Location;
 import com.gohiram.haj.trackerrestservice.exception.TrackerException;
-import com.gohiram.haj.trackerrestservice.model.Location;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class LocationService {
@@ -14,10 +17,14 @@ public class LocationService {
     @Autowired
     private LocationRepository locationRepository;
 
-    public Boolean addLocation(Long id, String location) throws TrackerException {
+    @Autowired
+    private FriendsRepository friendsRepository;
+
+    public Boolean addLocation(Long id, Location location) throws TrackerException {
         Location loc = locationRepository.findById(id).orElse(new Location());
         loc.setLastUpdated(new Date());
-        loc.setLocation(location);
+        loc.setLan(location.getLan());
+        loc.setLat(location.getLat());
         loc.setId(id);
         try {
             locationRepository.save(loc);
@@ -29,10 +36,13 @@ public class LocationService {
     }
 
 
-    public String getRecentLocations(String id) throws TrackerException {
+    public Location getRecentLocations(String id) throws TrackerException {
         Location location = locationRepository.findById(Long.valueOf(id)).orElse(new Location());
-        return location.getLocation();
+        return location;
     }
 
-
+    public List<Location> getFriendLocations(String id) {
+        List<Location> locations = friendsRepository.findAllByMyId(Long.valueOf(id)).stream().map(friend -> locationRepository.findById(friend.getFriendId()).get()).collect(Collectors.toList());
+        return locations;
+    }
 }

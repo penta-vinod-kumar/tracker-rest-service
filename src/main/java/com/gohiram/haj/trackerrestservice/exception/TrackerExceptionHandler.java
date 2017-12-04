@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.gohiram.haj.trackerrestservice.model.TrackerResponse;
+import com.gohiram.haj.trackerrestservice.dao.model.TrackerResponse;
 
 import springfox.documentation.annotations.ApiIgnore;
 

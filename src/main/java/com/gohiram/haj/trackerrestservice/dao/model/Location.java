@@ -1,14 +1,9 @@
-package com.gohiram.haj.trackerrestservice.model;
+package com.gohiram.haj.trackerrestservice.dao.model;
 
 import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.io.Serializable;
@@ -25,8 +20,11 @@ public class Location implements Serializable {
     @Column(name = "ID")
     private Long id;
 
-    @Column(name = "LOCATION", length = 100)
-    private String location;
+    @Column(name = "LAT", length = 100)
+    private String lat;
+
+    @Column(name = "LAN", length = 100)
+    private String lan;
 
     @Column(name = "LAST_UPDATED")
     private Date lastUpdated;

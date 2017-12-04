@@ -1,4 +1,4 @@
-package com.gohiram.haj.trackerrestservice.model;
+package com.gohiram.haj.trackerrestservice.dao.model;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;

@@ -1,7 +1,7 @@
 package com.gohiram.haj.trackerrestservice.service;
 
 import com.gohiram.haj.trackerrestservice.exception.TrackerException;
-import com.gohiram.haj.trackerrestservice.model.Device;
+import com.gohiram.haj.trackerrestservice.dao.model.Device;
 
 import java.util.List;
 

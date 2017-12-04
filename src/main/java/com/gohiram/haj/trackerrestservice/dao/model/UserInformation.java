@@ -1,4 +1,4 @@
-package com.gohiram.haj.trackerrestservice.model;
+package com.gohiram.haj.trackerrestservice.dao.model;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -6,9 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Table;
 
 @ApiModel
 @NoArgsConstructor

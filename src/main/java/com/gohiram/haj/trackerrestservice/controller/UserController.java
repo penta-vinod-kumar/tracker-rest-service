@@ -1,10 +1,10 @@
 package com.gohiram.haj.trackerrestservice.controller;
 
 import com.gohiram.haj.trackerrestservice.exception.TrackerException;
-import com.gohiram.haj.trackerrestservice.model.TrackerRequest;
-import com.gohiram.haj.trackerrestservice.model.TrackerResponse;
-import com.gohiram.haj.trackerrestservice.model.UserInformation;
-import com.gohiram.haj.trackerrestservice.model.Users;
+import com.gohiram.haj.trackerrestservice.dao.model.TrackerRequest;
+import com.gohiram.haj.trackerrestservice.dao.model.TrackerResponse;
+import com.gohiram.haj.trackerrestservice.dao.model.UserInformation;
+import com.gohiram.haj.trackerrestservice.dao.model.Users;
 import com.gohiram.haj.trackerrestservice.service.impl.UserRegistrationService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 
 import com.gohiram.haj.trackerrestservice.dao.ILoginDao;
 import com.gohiram.haj.trackerrestservice.exception.TrackerException;
-import com.gohiram.haj.trackerrestservice.model.UserInformation;
+import com.gohiram.haj.trackerrestservice.dao.model.UserInformation;
 import com.gohiram.haj.trackerrestservice.service.ILoginService;
 
 @Service

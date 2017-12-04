@@ -2,8 +2,8 @@ package com.gohiram.haj.trackerrestservice.service.impl;
 
 import com.gohiram.haj.trackerrestservice.dao.UserRepository;
 import com.gohiram.haj.trackerrestservice.exception.TrackerException;
-import com.gohiram.haj.trackerrestservice.model.UserInformation;
-import com.gohiram.haj.trackerrestservice.model.Users;
+import com.gohiram.haj.trackerrestservice.dao.model.UserInformation;
+import com.gohiram.haj.trackerrestservice.dao.model.Users;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

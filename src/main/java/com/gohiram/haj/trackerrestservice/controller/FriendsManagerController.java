@@ -1,16 +1,14 @@
 package com.gohiram.haj.trackerrestservice.controller;
 
 import com.gohiram.haj.trackerrestservice.exception.TrackerException;
-import com.gohiram.haj.trackerrestservice.model.Friend;
-import com.gohiram.haj.trackerrestservice.model.TrackerResponse;
-import com.gohiram.haj.trackerrestservice.model.Users;
+import com.gohiram.haj.trackerrestservice.dao.model.Friend;
+import com.gohiram.haj.trackerrestservice.dao.model.TrackerResponse;
+import com.gohiram.haj.trackerrestservice.dao.model.Users;
 import com.gohiram.haj.trackerrestservice.service.impl.FriendsManagerService;
 import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;

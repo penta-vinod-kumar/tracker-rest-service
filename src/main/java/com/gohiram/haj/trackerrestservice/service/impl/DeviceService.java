@@ -2,7 +2,7 @@ package com.gohiram.haj.trackerrestservice.service.impl;
 
 import com.gohiram.haj.trackerrestservice.dao.DeviceRepository;
 import com.gohiram.haj.trackerrestservice.exception.TrackerException;
-import com.gohiram.haj.trackerrestservice.model.Device;
+import com.gohiram.haj.trackerrestservice.dao.model.Device;
 import com.gohiram.haj.trackerrestservice.service.IDeviceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

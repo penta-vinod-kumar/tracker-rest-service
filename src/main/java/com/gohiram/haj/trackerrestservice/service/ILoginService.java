@@ -1,7 +1,7 @@
 package com.gohiram.haj.trackerrestservice.service;
 
 import com.gohiram.haj.trackerrestservice.exception.TrackerException;
-import com.gohiram.haj.trackerrestservice.model.UserInformation;
+import com.gohiram.haj.trackerrestservice.dao.model.UserInformation;
 
 public interface ILoginService {
 

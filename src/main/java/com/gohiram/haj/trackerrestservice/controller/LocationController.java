@@ -1,17 +1,19 @@
 package com.gohiram.haj.trackerrestservice.controller;
 
+import com.gohiram.haj.trackerrestservice.dao.model.Location;
 import com.gohiram.haj.trackerrestservice.exception.TrackerException;
-import com.gohiram.haj.trackerrestservice.model.TrackerResponse;
+import com.gohiram.haj.trackerrestservice.dao.model.TrackerResponse;
 import com.gohiram.haj.trackerrestservice.service.impl.LocationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 //@CrossOrigin
 @RestController
@@ -21,8 +23,8 @@ public class LocationController {
     @Autowired
     private LocationService locationService;
 
-    @RequestMapping(path = "/add-location/{id}/{location}", method = RequestMethod.POST)
-    public ResponseEntity<TrackerResponse<Boolean>> addLocation(@PathVariable Long id, @PathVariable String location)
+    @RequestMapping(path = "/add-location/{id}", method = RequestMethod.POST)
+    public ResponseEntity<TrackerResponse<Boolean>> addLocation(@PathVariable Long id, @RequestBody Location location)
             throws TrackerException {
         return new ResponseEntity<>(new TrackerResponse<Boolean>().setData(locationService.addLocation(id, location)),
                 HttpStatus.CREATED);
@@ -30,10 +32,15 @@ public class LocationController {
     }
 
     @RequestMapping(path = "/get-recent-location/{id}", method = RequestMethod.GET)
-    public ResponseEntity<TrackerResponse<String>> getLocation(@PathVariable String id) throws TrackerException {
-        return new ResponseEntity<>(new TrackerResponse<String>().setData(locationService.getRecentLocations(id)),
-                HttpStatus.OK);
+    public ResponseEntity<TrackerResponse<Location>> getLocation(@PathVariable String id) throws TrackerException {
+        return new ResponseEntity<>(new TrackerResponse<Location>().setData(locationService.getRecentLocations(id)), HttpStatus.OK);
     }
+
+    @RequestMapping(path = "/get-friends-location/{id}", method = RequestMethod.GET)
+    public ResponseEntity<TrackerResponse<List<Location>>> getFriendLocations(@PathVariable String id) throws TrackerException {
+        return new ResponseEntity<>(new TrackerResponse<List<Location>>().setData(locationService.getFriendLocations(id)), HttpStatus.OK);
+    }
+
 
 
 }

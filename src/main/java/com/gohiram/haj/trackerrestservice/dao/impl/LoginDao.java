@@ -4,7 +4,7 @@ import org.springframework.stereotype.Repository;
 
 import com.gohiram.haj.trackerrestservice.dao.ILoginDao;
 import com.gohiram.haj.trackerrestservice.exception.TrackerException;
-import com.gohiram.haj.trackerrestservice.model.UserInformation;
+import com.gohiram.haj.trackerrestservice.dao.model.UserInformation;
 
 
 @Repository
