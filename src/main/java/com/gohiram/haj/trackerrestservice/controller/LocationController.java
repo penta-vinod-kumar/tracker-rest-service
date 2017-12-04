@@ -3,6 +3,7 @@ package com.gohiram.haj.trackerrestservice.controller;
 import com.gohiram.haj.trackerrestservice.dao.model.Location;
 import com.gohiram.haj.trackerrestservice.exception.TrackerException;
 import com.gohiram.haj.trackerrestservice.dao.model.TrackerResponse;
+import com.gohiram.haj.trackerrestservice.model.LocationResponse;
 import com.gohiram.haj.trackerrestservice.service.impl.LocationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -37,8 +38,8 @@ public class LocationController {
     }
 
     @RequestMapping(path = "/get-friends-location/{id}", method = RequestMethod.GET)
-    public ResponseEntity<TrackerResponse<List<Location>>> getFriendLocations(@PathVariable String id) throws TrackerException {
-        return new ResponseEntity<>(new TrackerResponse<List<Location>>().setData(locationService.getFriendLocations(id)), HttpStatus.OK);
+    public ResponseEntity<TrackerResponse<List<LocationResponse>>> getFriendLocations(@PathVariable String id) throws TrackerException {
+        return new ResponseEntity<>(new TrackerResponse<List<LocationResponse>>().setData(locationService.getFriendLocations(id)), HttpStatus.OK);
     }
 
 
