@@ -15,7 +15,7 @@ public interface FriendsRepository extends JpaRepository<Friend, Long> {
 
     Friend findByMyIdAndFriendId(long myId, long friendId);
 
-    boolean deleteByMyIdAndFriendId(long myId, long friendId);
+    void deleteByMyIdAndFriendId(long myId, long friendId);
 
 	/*@Modifying
     @Query("update Friends friend set friend.status=:status where friend.id=:id and friend.friendId=:friendId")
