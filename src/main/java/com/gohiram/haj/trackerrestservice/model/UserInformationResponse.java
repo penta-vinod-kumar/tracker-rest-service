@@ -13,7 +13,6 @@ public class UserInformationResponse {
 
     private Users profile;
     private Location location;
-    @NonNull
     private List<Users> friends;
     private List<Location> friendsLocations;
 
