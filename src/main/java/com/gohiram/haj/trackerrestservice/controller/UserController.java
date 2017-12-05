@@ -5,6 +5,7 @@ import com.gohiram.haj.trackerrestservice.dao.model.TrackerRequest;
 import com.gohiram.haj.trackerrestservice.dao.model.TrackerResponse;
 import com.gohiram.haj.trackerrestservice.dao.model.UserInformation;
 import com.gohiram.haj.trackerrestservice.dao.model.Users;
+import com.gohiram.haj.trackerrestservice.model.UserInformationResponse;
 import com.gohiram.haj.trackerrestservice.service.impl.UserRegistrationService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -64,5 +65,10 @@ public class UserController {
     @RequestMapping(path = "read-all-friends/{id}", method = RequestMethod.GET)
     public ResponseEntity<TrackerResponse<List<Users>>> readAllFriends(@PathVariable Long id) throws TrackerException {
         return new ResponseEntity<>(new TrackerResponse<List<Users>>().setData(userRegistrationService.readAllFriendsUserInformation(id)), HttpStatus.OK);
+    }
+
+    @RequestMapping(path = "read-everything/{id}", method = RequestMethod.GET)
+    public ResponseEntity<TrackerResponse<UserInformationResponse>> readEverything(@PathVariable Long id) throws TrackerException {
+        return new ResponseEntity<>(new TrackerResponse<UserInformationResponse>().setData(userRegistrationService.readEverythingUserInformation(id)), HttpStatus.OK);
     }
 }
