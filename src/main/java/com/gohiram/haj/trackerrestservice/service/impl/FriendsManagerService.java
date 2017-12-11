@@ -56,6 +56,10 @@ public class FriendsManagerService {
             throw new TrackerException("User is not registered", HttpStatus.NO_CONTENT);
         }
 
+        if(friendUserProfile.getId().equals(id)){
+            throw new TrackerException("You cannot send friend request to your self", HttpStatus.NO_CONTENT);
+        }
+
         if (friendsRepository.findByMyIdAndFriendId(id, friendUserProfile.getId()) != null) {
             throw new TrackerException("Request has been already given from " + id + "to " + friendMobileNumber, HttpStatus.TOO_MANY_REQUESTS);
         }
