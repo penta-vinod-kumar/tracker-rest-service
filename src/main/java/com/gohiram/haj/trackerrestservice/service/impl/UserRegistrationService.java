@@ -66,6 +66,7 @@ public class UserRegistrationService {
             friendsRepository.findAllByMyId(id).stream().forEach(friend -> {
                 response.getFriends().add(userRepository.findById(friend.getFriendId()).get());
                 response.getFriendsLocations().add(locationRepository.findById(friend.getFriendId()).get());
+                response.getFriendsStatus().add(friend);
             });
         }
         return response;
