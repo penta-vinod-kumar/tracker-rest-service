@@ -1,9 +1,10 @@
 package com.gohiram.haj.trackerrestservice.controller;
 
-import com.gohiram.haj.trackerrestservice.exception.TrackerException;
 import com.gohiram.haj.trackerrestservice.dao.model.Friend;
 import com.gohiram.haj.trackerrestservice.dao.model.TrackerResponse;
 import com.gohiram.haj.trackerrestservice.dao.model.Users;
+import com.gohiram.haj.trackerrestservice.exception.ErrorInformation;
+import com.gohiram.haj.trackerrestservice.exception.TrackerException;
 import com.gohiram.haj.trackerrestservice.service.impl.FriendsManagerService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +33,10 @@ public class FriendsManagerController {
 
     @RequestMapping(path = "/send-friend-request/{id}/{friendMobileNumber}", method = RequestMethod.POST, produces = {"application/json"})
     public ResponseEntity<TrackerResponse<Boolean>> sendRequest(@PathVariable long id, @PathVariable long friendMobileNumber) throws TrackerException {
+        ErrorInformation errorInformation = friendsManagerService.validateRequest(id, friendMobileNumber);
+        if (errorInformation != null) {
+            return new ResponseEntity<>(new TrackerResponse<Boolean>().setErrorInformation(errorInformation), HttpStatus.OK);
+        }
         return new ResponseEntity<>(new TrackerResponse<Boolean>().setData(friendsManagerService.sendRequest(id, friendMobileNumber)), HttpStatus.OK);
     }
 

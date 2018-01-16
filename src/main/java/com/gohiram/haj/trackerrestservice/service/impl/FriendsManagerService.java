@@ -2,9 +2,10 @@ package com.gohiram.haj.trackerrestservice.service.impl;
 
 import com.gohiram.haj.trackerrestservice.dao.FriendsRepository;
 import com.gohiram.haj.trackerrestservice.dao.UserRepository;
-import com.gohiram.haj.trackerrestservice.exception.TrackerException;
 import com.gohiram.haj.trackerrestservice.dao.model.Friend;
 import com.gohiram.haj.trackerrestservice.dao.model.Users;
+import com.gohiram.haj.trackerrestservice.exception.ErrorInformation;
+import com.gohiram.haj.trackerrestservice.exception.TrackerException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -56,7 +57,7 @@ public class FriendsManagerService {
             throw new TrackerException("User is not registered", HttpStatus.NO_CONTENT);
         }
 
-        if(friendUserProfile.getId().equals(id)){
+        if (friendUserProfile.getId().equals(id)) {
             throw new TrackerException("You cannot send friend request to your self", HttpStatus.NO_CONTENT);
         }
 
@@ -108,6 +109,22 @@ public class FriendsManagerService {
         } catch (Exception e) {
             return false;
         }
-        return true;// friendsRepository;
+        return true;
+    }
+
+    public ErrorInformation validateRequest(long id, long friendMobileNumber) {
+        ErrorInformation errorInformation = null;
+        Friend friend = friendsRepository.findByMyIdAndFriendId(friendMobileNumber, id);
+        if (friend != null) {
+            errorInformation = new ErrorInformation();
+            errorInformation.setMessage("friend already exist, please respond to existing request");
+        } else {
+            friend = friendsRepository.findByMyIdAndFriendId(id, friendMobileNumber);
+            if (friend != null) {
+                errorInformation = new ErrorInformation();
+                errorInformation.setMessage("friend already exist, please respond to existing request");
+            }
+        }
+        return errorInformation;
     }
 }
