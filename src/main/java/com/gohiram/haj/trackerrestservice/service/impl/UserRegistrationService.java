@@ -5,6 +5,7 @@ import com.gohiram.haj.trackerrestservice.dao.LocationRepository;
 import com.gohiram.haj.trackerrestservice.dao.UserRepository;
 import com.gohiram.haj.trackerrestservice.dao.model.UserInformation;
 import com.gohiram.haj.trackerrestservice.dao.model.Users;
+import com.gohiram.haj.trackerrestservice.exception.ErrorInformation;
 import com.gohiram.haj.trackerrestservice.exception.TrackerException;
 import com.gohiram.haj.trackerrestservice.model.UserInformationResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -70,5 +71,21 @@ public class UserRegistrationService {
             });
         }
         return response;
+    }
+
+    public ErrorInformation validateUser(UserInformation data) {
+        ErrorInformation errorInformation = null;
+        Users users = userRepository.findByMobileNumber(data.getMobileNumber());
+        if (users != null) {
+            errorInformation = new ErrorInformation();
+            errorInformation.setMessage("Mobile number already exist");
+        } else {
+            users = userRepository.findByEmailId(data.getEmailId());
+            if (users != null) {
+                errorInformation = new ErrorInformation();
+                errorInformation.setMessage("email id already exist");
+            }
+        }
+        return errorInformation;
     }
 }

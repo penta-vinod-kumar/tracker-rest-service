@@ -1,5 +1,6 @@
 package com.gohiram.haj.trackerrestservice.controller;
 
+import com.gohiram.haj.trackerrestservice.exception.ErrorInformation;
 import com.gohiram.haj.trackerrestservice.exception.TrackerException;
 import com.gohiram.haj.trackerrestservice.dao.model.TrackerRequest;
 import com.gohiram.haj.trackerrestservice.dao.model.TrackerResponse;
@@ -35,7 +36,12 @@ public class UserController {
     @RequestMapping(path = "register", method = RequestMethod.POST)
     public ResponseEntity<TrackerResponse<Users>> registerUser(@RequestBody() TrackerRequest<UserInformation> request) throws TrackerException {
         TrackerResponse<Users> response = new TrackerResponse<>();
-        response.setData(userRegistrationService.registerUser(request.getData()));
+        ErrorInformation errorInformation = userRegistrationService.validateUser(request.getData());
+        if (errorInformation == null) {
+            response.setData(userRegistrationService.registerUser(request.getData()));
+        } else {
+            response.setErrorInformation(errorInformation);
+        }
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
