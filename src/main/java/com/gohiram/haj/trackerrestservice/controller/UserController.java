@@ -41,6 +41,7 @@ public class UserController {
             response.setData(userRegistrationService.registerUser(request.getData()));
         } else {
             response.setErrorInformation(errorInformation);
+            return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
         }
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
