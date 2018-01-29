@@ -35,7 +35,7 @@ public class FriendsManagerController {
     public ResponseEntity<TrackerResponse<Boolean>> sendRequest(@PathVariable long id, @PathVariable long friendMobileNumber) throws TrackerException {
         ErrorInformation errorInformation = friendsManagerService.validateRequest(id, friendMobileNumber);
         if (errorInformation != null) {
-            return new ResponseEntity<>(new TrackerResponse<Boolean>().setErrorInformation(errorInformation), HttpStatus.OK);
+            return new ResponseEntity<>(new TrackerResponse<Boolean>().setErrorInformation(errorInformation), HttpStatus.BAD_REQUEST);
         }
         return new ResponseEntity<>(new TrackerResponse<Boolean>().setData(friendsManagerService.sendRequest(id, friendMobileNumber)), HttpStatus.OK);
     }

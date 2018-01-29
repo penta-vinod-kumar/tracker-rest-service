@@ -114,6 +114,11 @@ public class FriendsManagerService {
 
     public ErrorInformation validateRequest(long id, long friendMobileNumber) {
         ErrorInformation errorInformation = null;
+        Users users = userRepository.findByMobileNumber(friendMobileNumber);
+        if(users== null){
+            errorInformation = new ErrorInformation();
+            errorInformation.setMessage("User not found with the mobile number " + friendMobileNumber);
+        }
         Friend friend = friendsRepository.findByMyIdAndFriendId(friendMobileNumber, id);
         if (friend != null) {
             errorInformation = new ErrorInformation();
