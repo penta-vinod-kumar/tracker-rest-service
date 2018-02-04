@@ -64,11 +64,13 @@ public class UserRegistrationService {
         if (user != null) {
             response.setProfile(user);
             // response.setLocation(locationRepository.findById(id).get());
-            friendsRepository.findAllByMyId(id).stream().forEach(friend -> {
-                response.getFriends().add(userRepository.findById(friend.getFriendId()).get());
-                response.getFriendsLocations().add(locationRepository.findById(friend.getFriendId()).get());
-                response.getFriendsStatus().add(friend);
-            });
+            friendsRepository.findAllByMyId(id).stream() //
+                    .filter(friend -> friend.getStatus().equals("CONFIRMED"))
+                    .forEach(friend -> {
+                        response.getFriends().add(userRepository.findById(friend.getFriendId()).get());
+                        response.getFriendsLocations().add(locationRepository.findById(friend.getFriendId()).orElse(null));
+                        response.getFriendsStatus().add(friend);
+                    });
         }
         return response;
     }
